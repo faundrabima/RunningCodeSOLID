@@ -1,0 +1,38 @@
+public class Main {
+    public static void main(String[] args) {
+        Invoice invoice = new Invoice(100, new TaxCalculator());
+        InvoicePrinter printer = new InvoicePrinter();
+        printer.printInvoice(invoice);
+    }
+}
+
+class Invoice {
+    private int amount;
+    private TaxCalculator taxCalculator;
+
+    public Invoice(int amount, TaxCalculator taxCalculator) {
+        this.amount = amount;
+        this.taxCalculator = taxCalculator;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public double calculateTax() {
+        return taxCalculator.calculateTax(amount);
+    }
+}
+
+class TaxCalculator {
+    public double calculateTax(int amount) {
+        return amount * 0.15;
+    }
+}
+
+class InvoicePrinter {
+    public void printInvoice(Invoice invoice) {
+        System.out.println("Invoice Amount: " + invoice.getAmount());
+        System.out.println("Tax: " + invoice.calculateTax());
+    }
+}
