@@ -1,0 +1,42 @@
+public class Main {
+    public static void main(String[] args) {
+        Switchable lightBulb = new LightBulb();
+        LightSwitch lightSwitch = new LightSwitch(lightBulb);
+        
+        lightSwitch.toggle(true);
+        lightSwitch.toggle(false);
+    }
+}
+
+interface Switchable {
+    void turnOn();
+    void turnOff();
+}
+
+class LightBulb implements Switchable {
+    @Override
+    public void turnOn() {
+        System.out.println("LightBulb on");
+    }
+
+    @Override
+    public void turnOff() {
+        System.out.println("LightBulb off");
+    }
+}
+
+class LightSwitch {
+    private Switchable device;
+
+    public LightSwitch(Switchable device) {
+        this.device = device;
+    }
+
+    public void toggle(boolean on) {
+        if (on) {
+            device.turnOn();
+        } else {
+            device.turnOff();
+        }
+    }
+}
